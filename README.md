@@ -14,7 +14,7 @@ App de notas com autenticação desenvolvido em React Native com Expo, Firebase 
 
 ## 📽️ Vídeo de Demonstração
 
-> 🔗 [Assista ao vídeo de demonstração aqui](#)
+> 🔗 [Assista ao vídeo de demonstração aqui](https://youtu.be/Vx2WgDx2Rkw)
 
 ---
 
