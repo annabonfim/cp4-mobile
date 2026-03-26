@@ -141,5 +141,3 @@ Cada usuário possui sua própria subcoleção, garantindo isolamento total dos 
 ## 📌 Observações
 
 - O projeto utiliza `.npmrc` com `legacy-peer-deps=true` para resolver conflitos de dependências do Expo Router com o npm versão 7+
-- A sessão do usuário é gerenciada pelo Firebase Authentication via `onAuthStateChanged`
-- O índice composto do Firestore (campo `uid` + `criadoEm`) precisa ser criado no Firebase Console na primeira execução — o link é gerado automaticamente no terminal
