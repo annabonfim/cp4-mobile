@@ -117,17 +117,16 @@ cp4-mobile/
 
 ## 🔥 Firestore
 
-As notas são salvas na coleção `notas` com a seguinte estrutura:
+As notas são salvas na subcoleção `usuarios/{uid}/notas` com a seguinte estrutura:
 ```json
 {
-  "uid": "id do usuário",
   "titulo": "título da nota",
   "conteudo": "conteúdo da nota",
   "criadoEm": "timestamp"
 }
 ```
 
-Cada usuário só tem acesso às suas próprias notas, filtradas pelo campo `uid`.
+Cada usuário possui sua própria subcoleção, garantindo isolamento total dos dados.
 
 ---
 
