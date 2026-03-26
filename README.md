@@ -134,7 +134,7 @@ Cada usuário possui sua própria subcoleção, garantindo isolamento total dos 
 
 | Login | Cadastro | Home | Nova Nota |
 |-------|----------|------|-----------|
-| ![Login](#) | ![Cadastro](#) | ![Home](#) | ![Nova Nota](#) |
+| <img src="assets/login.png" width="200"/> | <img src="assets/cadastro.png" width="200"/> | <img src="assets/home.png" width="200"/> | <img src="assets/criar-nota.png" width="200"/> |
 
 ---
 
