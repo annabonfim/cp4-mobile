@@ -1,15 +1,4 @@
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  serverTimestamp,
-  query,
-  where,
-  orderBy,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, addDoc, updateDoc, deleteDoc, doc, serverTimestamp, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "./FirebaseConfig";
 
 export type Nota = {
@@ -20,21 +9,20 @@ export type Nota = {
 };
 
 export async function criarNota(uid: string, titulo: string, conteudo: string) {
-  await addDoc(collection(db, "notas"), {
-    uid,
+  await addDoc(collection(db, "usuarios", uid, "notas"), {
     titulo,
     conteudo,
     criadoEm: serverTimestamp(),
   });
 }
 
-export async function atualizarNota(notaId: string, titulo: string, conteudo: string) {
-  const notaRef = doc(db, "notas", notaId);
+export async function atualizarNota(uid: string, notaId: string, titulo: string, conteudo: string) {
+  const notaRef = doc(db, "usuarios", uid, "notas", notaId);
   await updateDoc(notaRef, { titulo, conteudo });
 }
 
-export async function deletarNota(notaId: string) {
-  const notaRef = doc(db, "notas", notaId);
+export async function deletarNota(uid: string, notaId: string) {
+  const notaRef = doc(db, "usuarios", uid, "notas", notaId);
   await deleteDoc(notaRef);
 }
 
@@ -44,8 +32,7 @@ export function escutarNotas(
   onError?: (error: Error) => void
 ) {
   const q = query(
-    collection(db, "notas"),
-    where("uid", "==", uid),
+    collection(db, "usuarios", uid, "notas"),
     orderBy("criadoEm", "desc")
   );
 

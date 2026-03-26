@@ -45,21 +45,23 @@ export default function Home() {
   };
 
   const confirmarDelecao = (nota: Nota) => {
-    Alert.alert("Deletar Nota", `Deseja deletar "${nota.titulo}"?`, [
-      { text: "Cancelar", style: "cancel" },
-      {
-        text: "Deletar",
-        style: "destructive",
-        onPress: async () => {
-          try {
-            await deletarNota(nota.id);
-          } catch (error) {
-            Alert.alert("Erro", "Não foi possível deletar a nota.");
-          }
-        },
+  Alert.alert("Deletar Nota", `Deseja deletar "${nota.titulo}"?`, [
+    { text: "Cancelar", style: "cancel" },
+    {
+      text: "Deletar",
+      style: "destructive",
+      onPress: async () => {
+        try {
+          const user = auth.currentUser;
+          if (!user) return;
+          await deletarNota(user.uid, nota.id);
+        } catch (error) {
+          Alert.alert("Erro", "Não foi possível deletar a nota.");
+        }
       },
-    ]);
-  };
+    },
+  ]);
+};
 
   return (
     <SafeAreaView style={styles.container}>

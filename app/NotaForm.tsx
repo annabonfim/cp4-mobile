@@ -18,31 +18,31 @@ export default function NoteForm() {
   const [conteudo, setConteudo] = useState(params.conteudo as string ?? "");
 
   const salvarNota = async () => {
-    if (!titulo.trim() || !conteudo.trim()) {
-      Alert.alert("Atenção", "Preencha o título e o conteúdo.");
-      return;
-    }
+  if (!titulo.trim() || !conteudo.trim()) {
+    Alert.alert("Atenção", "Preencha o título e o conteúdo.");
+    return;
+  }
 
-    const user = auth.currentUser;
-    if (!user) {
-      Alert.alert("Erro", "Nenhum usuário autenticado.");
-      return;
-    }
+  const user = auth.currentUser;
+  if (!user) {
+    Alert.alert("Erro", "Nenhum usuário autenticado.");
+    return;
+  }
 
-    try {
-      if (isEditing) {
-        await atualizarNota(params.id as string, titulo.trim(), conteudo.trim());
-        Alert.alert("Sucesso", "Nota atualizada!");
-      } else {
-        await criarNota(user.uid, titulo.trim(), conteudo.trim());
-        Alert.alert("Sucesso", "Nota criada!");
-      }
-      router.back();
-    } catch (error) {
-      console.log("Erro ao salvar nota:", error);
-      Alert.alert("Erro", "Não foi possível salvar a nota.");
+  try {
+    if (isEditing) {
+      await atualizarNota(user.uid, params.id as string, titulo.trim(), conteudo.trim());
+      Alert.alert("Sucesso", "Nota atualizada!");
+    } else {
+      await criarNota(user.uid, titulo.trim(), conteudo.trim());
+      Alert.alert("Sucesso", "Nota criada!");
     }
-  };
+    router.back();
+  } catch (error) {
+    console.log("Erro ao salvar nota:", error);
+    Alert.alert("Erro", "Não foi possível salvar a nota.");
+  }
+};
 
   return (
     <SafeAreaView style={styles.container}>
